@@ -1,8 +1,16 @@
 package edu.miu.cs.flightreservation.repository;
 
 import edu.miu.cs.flightreservation.model.Person;
-import org.springframework.data.jpa.repository.JpaRepository;
+import edu.miu.cs.flightreservation.model.Ticket;
 
-public interface personRepository extends JpaRepository<Person,Long> {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import javax.transaction.Transactional;
+
+
+@Repository
+@Transactional
+public interface TicketRepository extends JpaRepository<Ticket,Long> {
 
 }

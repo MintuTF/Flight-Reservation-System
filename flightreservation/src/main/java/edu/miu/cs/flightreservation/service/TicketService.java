@@ -1,10 +1,10 @@
 package edu.miu.cs.flightreservation.service;
 
-import edu.miu.cs.flightreservation.model.Person;
+import edu.miu.cs.flightreservation.model.*;
 
-public interface PersonService {
+public interface TicketService {
 
-    public Person createPerson(Person person);
+    public Ticket createTicket(Ticket ticket);
 
-    public Person getPerson();
+    public Ticket getTicket();
 }
