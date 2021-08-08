@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="dcc59850-b54a-47d3-bcca-f5cc8eff7a86" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/flightreservation/src/main/java/edu/miu/cs/flightreservation/repository/TicketRepository.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/flightreservation/src/main/java/edu/miu/cs/flightreservation/service/TicketService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
+=======
+    <list default="true" id="dcc59850-b54a-47d3-bcca-f5cc8eff7a86" name="Default Changelist" comment="" />
+>>>>>>> 897b7e0d8af10f9ea03713e849f416dabdf21b61
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,9 +33,14 @@
     <option name="version" value="1" />
   </component>
   <component name="ProjectId" id="1wScBTq2iPho42sfzOTrWdhDLvA" />
+<<<<<<< HEAD
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="abbreviatePackageNames" value="true" />
+=======
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+>>>>>>> 897b7e0d8af10f9ea03713e849f416dabdf21b61
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
@@ -39,7 +48,11 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+<<<<<<< HEAD
     <property name="last_opened_file_path" value="$PROJECT_DIR$/flightreservation/src/main/java/edu/miu/cs/flightreservation/repository" />
+=======
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/flightreservation/src/main/java/edu/miu/cs/flightreservation/model" />
+>>>>>>> 897b7e0d8af10f9ea03713e849f416dabdf21b61
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -48,11 +61,30 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+<<<<<<< HEAD
       <recent name="$PROJECT_DIR$/flightreservation/src/main/java/edu/miu/cs/flightreservation/repository" />
       <recent name="$PROJECT_DIR$/flightreservation/src/main/java/edu/miu/cs/flightreservation/service" />
       <recent name="$PROJECT_DIR$/flightreservation/src/main/java/edu/miu/cs/flightreservation/model" />
     </key>
   </component>
+=======
+      <recent name="$PROJECT_DIR$/flightreservation/src/main/java/edu/miu/cs/flightreservation/model" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+>>>>>>> 897b7e0d8af10f9ea03713e849f416dabdf21b61
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -61,10 +93,14 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1628455295429</updated>
+<<<<<<< HEAD
       <workItem from="1628455299854" duration="2003000" />
       <workItem from="1628457564664" duration="256000" />
       <workItem from="1628457894056" duration="246000" />
       <workItem from="1628458235714" duration="652000" />
+=======
+      <workItem from="1628455299854" duration="1544000" />
+>>>>>>> 897b7e0d8af10f9ea03713e849f416dabdf21b61
     </task>
     <servers />
   </component>
