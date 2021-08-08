@@ -4,6 +4,9 @@ package edu.miu.cs.flightreservation.model;
 import lombok.Data;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 @Data
 public class Person {
     @Id
