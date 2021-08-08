@@ -6,6 +6,8 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @Data
 public class Person {
+    @Id
+    @GeneratedValue
     private long id;
     private String username;
     private String password;
