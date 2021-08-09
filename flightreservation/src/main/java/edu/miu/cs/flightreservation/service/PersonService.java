@@ -17,9 +17,9 @@ public interface PersonService {
        Person createPerson(Person person);
        Page<Person> getAllPerson(Pageable pageable);
        Person getOnePersonByUsername(String username);
-       void  deletePerson(Person person);
+       void  deletePerson(Long id);
        Person updatePerson(Person person);
-       Optional<Person> getOnePersonById(Long id);
+       Person getOnePersonById(Long id);
 
 
 

@@ -34,19 +34,22 @@ public class PersonServiceImp implements PersonService{
     }
 
     @Override
-    public void deletePerson(Person person) {
-
+    public void deletePerson(Long id) {
+     Person person=personRepository.findPersonById(id);
        personRepository.delete(person);
 
     }
 
     @Override
     public Person updatePerson(Person person) {
-        return personRepository.save(person);
+
+       return personRepository.save(person);
+
     }
 
     @Override
-    public Optional<Person> getOnePersonById(Long id) {
-        return personRepository.findById(id);
+    public Person getOnePersonById(Long id) {
+
+       return personRepository.findPersonById(id);
     }
 }
