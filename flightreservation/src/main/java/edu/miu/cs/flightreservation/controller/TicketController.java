@@ -21,7 +21,6 @@ public class TicketController {
     public ResponseEntity<List<Ticket>> findAll() {
         List <Ticket> t =  tikcetServiceInstance.getAllTicket();
                 return new ResponseEntity<>(t,HttpStatus.OK);
-
     }
 
     @GetMapping("/{id}")
