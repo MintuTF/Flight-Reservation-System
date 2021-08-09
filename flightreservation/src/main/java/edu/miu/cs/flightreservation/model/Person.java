@@ -2,13 +2,22 @@ package edu.miu.cs.flightreservation.model;
 
 
 import lombok.Data;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
+import lombok.NoArgsConstructor;
 
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.*;
+
+@Entity
 @Data
+@Table(name = "Person")
 public class Person {
+
+
     @Id
-    @GeneratedValue
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String username;
     private String password;
     private  String status;
@@ -17,12 +26,6 @@ public class Person {
     private  String email;
 
 
-    public Person(String username, String password, String status, String firstName, String lastName, String email) {
-        this.username = username;
-        this.password = password;
-        this.status = status;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-    }
+
+
 }
