@@ -38,8 +38,14 @@ public class TicketServiceImp implements TicketService{
     }
 
     @Override
-    public Ticket updateTicket(Ticket ticket) {
-        return ticketRepository.save(ticket);
+    public Ticket updateTicket(Long id,Ticket ticket) {
+
+        Ticket ticket1  =ticketRepository.findTicketById(id);
+        ticket1.setDate(ticket.getDate());
+        ticket1.setNumber(ticket.getNumber());
+        ticket1.setReservationCode(ticket.getReservationCode());
+
+        return ticketRepository.save(ticket1);
     }
 
 /*
