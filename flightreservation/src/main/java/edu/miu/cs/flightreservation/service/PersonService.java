@@ -1,6 +1,7 @@
 package edu.miu.cs.flightreservation.service;
 
 import edu.miu.cs.flightreservation.model.Person;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +18,7 @@ public interface PersonService {
        void  deletePerson(Person person);
        Person updatePerson(Person person);
        Optional<Person> getOnePersonById(Long id);
+
 
 
 }
