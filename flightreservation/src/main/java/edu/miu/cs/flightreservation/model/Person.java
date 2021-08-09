@@ -28,8 +28,22 @@ public class Person {
     private  String email;
     @ManyToMany
     private Set<Role> roles;
-//    @Embeddable
-//    private Address address;
+    @Embedded
+    private Address address;
+
+
+    public boolean addRoles(Role role){
+        boolean status=false;
+        if (roles.add(role)){
+            role.addOnePeson(this);
+            status=true;
+        }
+        return status;
+    }
+
+    public boolean addOneRole(Role role){
+     return this.roles.add(role);
+    }
 
 
 
