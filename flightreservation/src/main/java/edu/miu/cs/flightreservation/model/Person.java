@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Data
@@ -24,6 +25,8 @@ public class Person {
     private String firstName;
     private String lastName;
     private  String email;
+    @ManyToMany
+    private Set<Role> roles;
 //    @Embeddable
 //    private Address address;
 
