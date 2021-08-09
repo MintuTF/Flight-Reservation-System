@@ -30,7 +30,7 @@ public class AddressController {
     }
 
     @PostMapping()
-    public ResponseEntity<Address> createAirline(@RequestBody Address address){
+    public ResponseEntity<Address> createAddress(@RequestBody Address address){
         try{
             Address _address = new Address();
             _address.setCity(address.getCity());
