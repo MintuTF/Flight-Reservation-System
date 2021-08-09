@@ -16,7 +16,7 @@ public interface TicketService {
     public Optional<Ticket> getTicket(long id);
     public void deleteTicket(Ticket ticket);
     public List<Ticket> getAllTicket();
-    public Ticket updateTicket(Ticket ticket);
+    public Ticket updateTicket(Long id,Ticket ticket);
 
 
 

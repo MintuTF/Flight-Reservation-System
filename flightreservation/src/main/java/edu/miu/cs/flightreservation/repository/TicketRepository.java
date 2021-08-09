@@ -13,4 +13,5 @@ import javax.transaction.Transactional;
 @Transactional
 public interface TicketRepository extends JpaRepository<Ticket,Long> {
 
+    Ticket findTicketById(Long id);
 }

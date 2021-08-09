@@ -21,7 +21,6 @@ public class TicketController {
     public ResponseEntity<List<Ticket>> findAll() {
         List <Ticket> t =  tikcetServiceInstance.getAllTicket();
                 return new ResponseEntity<>(t,HttpStatus.OK);
-
     }
 
     @GetMapping("/{id}")
@@ -45,27 +44,26 @@ public class TicketController {
 
     }
 
-    @PostMapping()
-    public ResponseEntity<Ticket> createTicket(@RequestBody Ticket ticket) {
+    @PostMapping
+    public ResponseEntity<?> createTicket(@RequestBody Ticket ticket) {
 
             try{
-                Ticket _ticket = new Ticket();
-                return new ResponseEntity(tikcetServiceInstance.createTicket(_ticket), HttpStatus.CREATED);
+                return new ResponseEntity(tikcetServiceInstance.createTicket(ticket), HttpStatus.CREATED);
             }catch (Exception e){
-                return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
 
 
 
-    @PutMapping
-    public ResponseEntity<Ticket> updateTicket(Ticket ticket){
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateTicket(@PathVariable("id") Long id,@RequestBody Ticket t){
 
         try{
-            tikcetServiceInstance.getTicket(ticket.getId()).orElseThrow(RuntimeException::new);
-        return new ResponseEntity(tikcetServiceInstance.createTicket(ticket), HttpStatus.OK);
+            Optional<Ticket> ticket = Optional.ofNullable(tikcetServiceInstance.updateTicket(id,t));
+        return new ResponseEntity(ticket, HttpStatus.OK);
     }catch (Exception e){
-        return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
     }
 

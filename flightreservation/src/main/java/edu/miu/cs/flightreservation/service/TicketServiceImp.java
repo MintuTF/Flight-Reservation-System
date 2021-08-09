@@ -3,7 +3,6 @@ package edu.miu.cs.flightreservation.service;
 
 import edu.miu.cs.flightreservation.model.Person;
 import edu.miu.cs.flightreservation.model.Ticket;
-import edu.miu.cs.flightreservation.repository.PersonRepository;
 import edu.miu.cs.flightreservation.repository.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,8 +37,14 @@ public class TicketServiceImp implements TicketService{
     }
 
     @Override
-    public Ticket updateTicket(Ticket ticket) {
-        return ticketRepository.save(ticket);
+    public Ticket updateTicket(Long id,Ticket ticket) {
+
+        Ticket ticket1  =ticketRepository.findTicketById(id);
+        ticket1.setDate(ticket.getDate());
+        ticket1.setNumber(ticket.getNumber());
+        ticket1.setReservationCode(ticket.getReservationCode());
+
+        return ticketRepository.save(ticket1);
     }
 
 /*
