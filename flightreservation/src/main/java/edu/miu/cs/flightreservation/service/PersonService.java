@@ -2,6 +2,8 @@ package edu.miu.cs.flightreservation.service;
 
 import edu.miu.cs.flightreservation.model.Person;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,7 +15,7 @@ import java.util.Optional;
 public interface PersonService {
 
        Person createPerson(Person person);
-       List<Person> getAllPerson();
+       Page<Person> getAllPerson(Pageable pageable);
        Person getOnePersonByUsername(String username);
        void  deletePerson(Person person);
        Person updatePerson(Person person);
