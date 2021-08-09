@@ -1,15 +1,21 @@
 package edu.miu.cs.flightreservation.service;
 
 
+import edu.miu.cs.flightreservation.Util.payload.SignupRequest;
+import edu.miu.cs.flightreservation.model.Address;
 import edu.miu.cs.flightreservation.model.Person;
+import edu.miu.cs.flightreservation.model.Role;
 import edu.miu.cs.flightreservation.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.Embedded;
+import javax.persistence.ManyToMany;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class PersonServiceImp implements PersonService{
@@ -17,9 +23,13 @@ public class PersonServiceImp implements PersonService{
     @Autowired
     private PersonRepository personRepository;
 
+    @Autowired
+    private UserRoleService userRoleService;
+
 
    @Override
     public Person createPerson(Person person) {
+
         return personRepository.save(person);
     }
 
@@ -41,9 +51,19 @@ public class PersonServiceImp implements PersonService{
     }
 
     @Override
-    public Person updatePerson(Person person) {
+    public Person updatePerson(Long id, SignupRequest signupRequest) {
 
-       return personRepository.save(person);
+
+       Person person1=personRepository.findPersonById(id);
+       person1.setFirstName(signupRequest.getFirstName());
+       person1.setLastName(signupRequest.getLastName());
+       person1.setAddress(signupRequest.getAddress());
+       person1.setUsername(signupRequest.getUsername());
+       person1.setStatus("Active");
+       person1.setRoles(userRoleService.userRole(signupRequest));
+       person1.setAddress(signupRequest.getAddress());
+
+       return personRepository.save(person1);
 
     }
 

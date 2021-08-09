@@ -1,5 +1,6 @@
 package edu.miu.cs.flightreservation.controller;
 
+import edu.miu.cs.flightreservation.Util.payload.SignupRequest;
 import edu.miu.cs.flightreservation.model.Person;
 import edu.miu.cs.flightreservation.service.PersonServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,12 +87,12 @@ public class PersonController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<?> updatePerson(@PathVariable Long id,@RequestBody Person person){
+    public ResponseEntity<?> updatePerson(@PathVariable Long id,@RequestBody SignupRequest person){
 
         ResponseEntity<?> responseEntity=null;
         try {
 
-            Person getUser = personServiceImp.updatePerson(person);
+            Person getUser = personServiceImp.updatePerson(id,person);
             if (getUser != null) {
 
                 responseEntity=new ResponseEntity<>(getUser, HttpStatus.OK);
