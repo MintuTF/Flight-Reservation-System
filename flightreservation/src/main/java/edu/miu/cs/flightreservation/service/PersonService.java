@@ -15,7 +15,7 @@ import java.util.Optional;
 @Transactional
 public interface PersonService {
 
-       Person createPerson(Person person);
+       Person createPerson(SignupRequest signupRequest);
        Page<Person> getAllPerson(Pageable pageable);
        Person getOnePersonByUsername(String username);
        void  deletePerson(Long id);

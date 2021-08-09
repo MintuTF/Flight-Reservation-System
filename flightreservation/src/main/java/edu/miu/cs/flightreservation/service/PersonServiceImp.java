@@ -28,9 +28,14 @@ public class PersonServiceImp implements PersonService{
 
 
    @Override
-    public Person createPerson(Person person) {
-
-        return personRepository.save(person);
+    public Person createPerson(SignupRequest signupRequest) {
+       System.out.println(signupRequest);
+   Person person1=new Person(signupRequest.getUsername(),
+           signupRequest.getPassword(),
+           signupRequest.getStatus(), signupRequest.getFirstName(),
+           signupRequest.getLastName(), signupRequest.getEmail(),
+           userRoleService.userRole(signupRequest));
+        return personRepository.save(person1);
     }
 
     @Override
@@ -57,11 +62,11 @@ public class PersonServiceImp implements PersonService{
        Person person1=personRepository.findPersonById(id);
        person1.setFirstName(signupRequest.getFirstName());
        person1.setLastName(signupRequest.getLastName());
-       person1.setAddress(signupRequest.getAddress());
+       //person1.setAddress(signupRequest.getAddress());
        person1.setUsername(signupRequest.getUsername());
        person1.setStatus("Active");
-       person1.setRoles(userRoleService.userRole(signupRequest));
-       person1.setAddress(signupRequest.getAddress());
+       //person1.setRoles(userRoleService.userRole(signupRequest));
+
 
        return personRepository.save(person1);
 

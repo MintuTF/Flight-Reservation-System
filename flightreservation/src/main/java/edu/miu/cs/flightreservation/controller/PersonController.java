@@ -39,12 +39,12 @@ public class PersonController {
 
 
     @PostMapping("signup")
-    public ResponseEntity<?> createPerson(@RequestBody Person person){
+    public ResponseEntity<?> createPerson(@RequestBody SignupRequest signupRequest){
 
         ResponseEntity<?> responseEntity=null;
         try {
 
-             Person getUser = personServiceImp.createPerson(person);
+             Person getUser = personServiceImp.createPerson(signupRequest);
             if (getUser != null) {
 
                 responseEntity=new ResponseEntity<>(getUser, HttpStatus.OK);
@@ -63,6 +63,7 @@ public class PersonController {
         try {
 
             personServiceImp.deletePerson(id);
+            responseEntity =new ResponseEntity<>("user successfully", HttpStatus.OK);
 
         } catch (Exception e) {
             responseEntity =new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
@@ -77,7 +78,8 @@ public class PersonController {
         ResponseEntity<?> responseEntity=null;
         try {
 
-            personServiceImp.getAllPerson(page);
+           Page<Person> persons= personServiceImp.getAllPerson(page);
+            responseEntity =new ResponseEntity<>(persons, HttpStatus.OK);
 
         } catch (Exception e) {
             responseEntity =new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);

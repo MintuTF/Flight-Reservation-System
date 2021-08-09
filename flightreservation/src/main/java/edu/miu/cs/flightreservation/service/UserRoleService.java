@@ -21,7 +21,7 @@ public class UserRoleService {
     public Set<Role> userRole(SignupRequest signupRequest) {
         Set<String> strRoles = signupRequest.getRoles();
         Set<Role> roles = new HashSet<>();
-        System.out.println(strRoles);
+
         if (strRoles == null) {
             Role userRole = roleRepository.findByName(ERole.PASSANGER)
                     .orElseThrow(() -> new RuntimeException("Error: Role is not found."));

@@ -13,36 +13,49 @@ import java.util.Set;
 
 @Entity
 @Data
-@Table(name = "Person")
+@NoArgsConstructor
+
+
 public class Person {
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
     private String username;
     private String password;
     private  String status;
     private String firstName;
     private String lastName;
     private  String email;
-    @ManyToMany
+
+    @ManyToMany(mappedBy = "people")
     private Set<Role> roles;
-    @Embedded
-    private Address address;
+    //@Embedded
+   // private Address address;
 
+    public Person(String username, String password,
+                  String status, String firstName,
+                  String lastName, String email,Set<Role> roles) {
+        this.username = username;
+        this.password = password;
+        this.status = status;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.roles=roles;
 
-    public boolean addRoles(Role role){
-        boolean status=false;
-        if (roles.add(role)){
-            role.addOnePeson(this);
-            status=true;
-        }
-        return status;
     }
 
-    public boolean addOneRole(Role role){
-     return this.roles.add(role);
-    }
+//    public boolean addRoles(Role role){
+//        boolean status=false;
+//        if (roles.add(role)){
+//            role.addOnePeson(this);
+//            status=true;
+//        }
+//        return status;
+//    }
+//
+//    public boolean addOneRole(Role role){
+//     return this.roles.add(role);
+//    }
 
 }
