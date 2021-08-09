@@ -2,19 +2,29 @@ package edu.miu.cs.flightreservation.model;
 
 
 import lombok.Data;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 
+import javax.persistence.*;
+import java.time.LocalDate;
+
+@Entity
 @Data
-public class Ticket {
+@Table(name = "Ticket")
+public class Ticket{
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
     private int number;
     private String reservationCode;
-    private  LocalDate date;
+    private LocalDate date;
 
 
+    public Ticket(){
+
+    }
 
     public Ticket(int num, String code, LocalDate d) {
-        this.number = username;
+        this.number = num;
         this.reservationCode = code;
         this.date = d;
 

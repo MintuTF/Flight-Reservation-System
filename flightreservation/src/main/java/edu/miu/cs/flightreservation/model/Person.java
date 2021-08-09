@@ -45,7 +45,4 @@ public class Person {
      return this.roles.add(role);
     }
 
-
-
-
 }
