@@ -1,11 +1,15 @@
 package edu.miu.cs.flightreservation.service;
 
+import edu.miu.cs.flightreservation.model.Airline;
 import edu.miu.cs.flightreservation.model.Airport;
 import edu.miu.cs.flightreservation.repository.AirportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,7 +25,15 @@ public class AirportServiceImpl implements AirportService {
 
     @Override
     public List<Airport> findAll() {
-        return airportRepository.findAll();
+        List<Airport> airports = new ArrayList<Airport>();
+        airportRepository.findAll()
+                .forEach(airports::add);
+        return airports;
+    }
+
+    @Override
+    public Page<Airport> findAllByPage(Pageable pageable) {
+        return airportRepository.findAll(pageable);
     }
 
     @Override
