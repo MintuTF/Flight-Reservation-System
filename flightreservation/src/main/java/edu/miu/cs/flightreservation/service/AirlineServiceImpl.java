@@ -27,7 +27,7 @@ public class AirlineServiceImpl implements AirlineService {
     }
 
     @Override
-    public Page<Airline> findAllByPage(Pageable pageable) {
+    public Page<Airline> findAll(Pageable pageable) {
         return airlineRepository.findAll(pageable);
     }
 
