@@ -25,7 +25,4 @@ public class Person {
     private String lastName;
     private  String email;
 
-
-
-
 }
