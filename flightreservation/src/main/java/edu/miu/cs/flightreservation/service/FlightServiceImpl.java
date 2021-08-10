@@ -1,5 +1,12 @@
 package edu.miu.cs.flightreservation.service;
 
+import edu.miu.cs.flightreservation.model.Flight;
+import edu.miu.cs.flightreservation.repository.FlightRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Collection;
+
 import edu.miu.cs.flightreservation.model.Airline;
 import edu.miu.cs.flightreservation.model.Flight;
 import edu.miu.cs.flightreservation.repository.FlightRepository;
@@ -7,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -24,19 +32,30 @@ public class FlightServiceImpl implements FlightService{
     }
 
     @Override
+
     public Page<Flight> findAll(Pageable pageable) {
         return repository.findAll(pageable);
     }
 
 
     @Override
+
     public Flight findById(long id) {
         return repository.findById(id).get();
     }
 
     @Override
+
+    public Flight update(long id) {
+        Boolean exist = repository.existsById(id);
+        if (exist){
+            return repository.save(repository.getById(id));
+        }
+        return null;
+
     public Flight update(Flight flight) {
         return repository.save(flight);
+
     }
 
     @Override

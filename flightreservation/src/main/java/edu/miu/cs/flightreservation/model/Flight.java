@@ -18,6 +18,7 @@ public class Flight {
     private LocalDate departureTime;
     private LocalDateTime arrivalTime;
     @OneToMany(mappedBy = "flight")
+    @JoinColumn
     private List<Ticket> tickets;
     @ManyToOne
     private Airline airLine;
