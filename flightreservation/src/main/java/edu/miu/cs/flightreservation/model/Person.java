@@ -47,8 +47,6 @@ public class Person {
         this.lastName = lastName;
         this.email = email;
         this.address=address;
-
-
     }
 
     public boolean addRoles(Role role){
@@ -63,5 +61,4 @@ public class Person {
     public boolean addOneRole(Role role){
      return this.roles.add(role);
     }
-
 }
