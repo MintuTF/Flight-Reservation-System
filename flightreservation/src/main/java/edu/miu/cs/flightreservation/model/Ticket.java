@@ -1,6 +1,7 @@
 package edu.miu.cs.flightreservation.model;
 
 
+import edu.miu.cs.flightreservation.service.UtilService;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -14,18 +15,26 @@ public class Ticket{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private int number;
-    private String reservationCode;
+    private String number;
     private LocalDate date;
 
+    @ManyToOne
+    private Flight flight;
+
+    @ManyToOne
+    @JoinColumn(name="reservationCode")
+    private Reservation reservation;
+
     public Ticket(){
-
+        this.number = UtilService.generateAlphanumeric(UtilService.DEFAULT_LENGTH);
     }
 
-    public Ticket(int num, String code, LocalDate d) {
-        this.number = num;
-        this.reservationCode = code;
-        this.date = d;
-
+    public Ticket(String number, LocalDate flightDate) {
+        this.number = number;
+        this.date = flightDate;
     }
+
+
+
+
 }

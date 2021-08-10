@@ -17,7 +17,7 @@ public class Flight {
     private int capacity;
     private LocalDate departureTime;
     private LocalDateTime arrivalTime;
-    @OneToMany
+    @OneToMany(mappedBy = "flight")
     @JoinColumn
     @Transient
     private List<Ticket> tickets;
