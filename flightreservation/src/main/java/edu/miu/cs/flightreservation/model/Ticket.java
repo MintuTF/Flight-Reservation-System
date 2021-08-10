@@ -18,7 +18,6 @@ public class Ticket{
     private String reservationCode;
     private LocalDate date;
 
-
     public Ticket(){
 
     }
