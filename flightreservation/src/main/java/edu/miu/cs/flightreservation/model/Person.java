@@ -25,5 +25,12 @@ public class Person {
     private String firstName;
     private String lastName;
     private  String email;
+    private String passportId;
+    private String phoneNumber;
+    private String gender;
+
+    public Person(){
+        this.status = "ACTIVE";
+    }
 
 }

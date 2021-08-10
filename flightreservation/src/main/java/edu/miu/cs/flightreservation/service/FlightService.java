@@ -9,4 +9,5 @@ public interface FlightService {
     public Flight findById(long id);
     public Flight update(long id);
     public Flight create(Flight flight);
+    boolean exists(long[] flights);
 }

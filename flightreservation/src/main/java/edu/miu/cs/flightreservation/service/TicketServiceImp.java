@@ -1,6 +1,7 @@
 package edu.miu.cs.flightreservation.service;
 
 
+import edu.miu.cs.flightreservation.model.Flight;
 import edu.miu.cs.flightreservation.model.Person;
 import edu.miu.cs.flightreservation.model.Ticket;
 import edu.miu.cs.flightreservation.repository.TicketRepository;
@@ -42,8 +43,6 @@ public class TicketServiceImp implements TicketService{
         Ticket ticket1  =ticketRepository.findTicketById(id);
         ticket1.setDate(ticket.getDate());
         ticket1.setNumber(ticket.getNumber());
-        ticket1.setReservationCode(ticket.getReservationCode());
-
         return ticketRepository.save(ticket1);
     }
 
@@ -80,4 +79,5 @@ public class TicketServiceImp implements TicketService{
         return personRepository.findById(id);
 
     }*/
+
 }
