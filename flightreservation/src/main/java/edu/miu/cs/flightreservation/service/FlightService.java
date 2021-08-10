@@ -14,10 +14,7 @@ public interface FlightService {
     public List<Flight> findAll();
 
     public Flight findById(long id);
-    public Flight update(long id);
-    public Flight create(Flight flight);
     public Page<Flight> findAll(Pageable pageable);
-    public Flight findById(long id);
     public Flight update(Flight flight);
     public Flight create(Flight flight);
 

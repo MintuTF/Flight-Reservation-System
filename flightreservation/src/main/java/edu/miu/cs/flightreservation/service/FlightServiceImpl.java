@@ -44,15 +44,14 @@ public class FlightServiceImpl implements FlightService{
         return repository.findById(id).get();
     }
 
-    @Override
-
     public Flight update(long id) {
         Boolean exist = repository.existsById(id);
-        if (exist){
+        if (exist) {
             return repository.save(repository.getById(id));
         }
         return null;
-
+    }
+    @Override
     public Flight update(Flight flight) {
         return repository.save(flight);
 
@@ -67,15 +66,15 @@ public class FlightServiceImpl implements FlightService{
 
     public boolean exists(long[] flights) {
         boolean result = true;
-        for(int i=0; i<flights.length; i++){
+        for (int i = 0; i < flights.length; i++) {
             Flight flight = repository.findById(flights[i]).orElse(null);
-            if(flight == null)
+            if (flight == null)
                 result = false;
         }
         return result;
-
+    }
+    @Override
     public void delete(Flight flight){
         repository.delete(flight);
-
     }
 }
