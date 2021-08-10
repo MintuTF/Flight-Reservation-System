@@ -12,6 +12,7 @@ public interface AirportService {
     public List<Airport> findAll();
     public Page<Airport> findAll(Pageable pageable);
     public Airport findById(Long id);
+    public Airport findByCode(String code);
     public void delete(Airport airport);
     public void deleteById(Long id);
 }
