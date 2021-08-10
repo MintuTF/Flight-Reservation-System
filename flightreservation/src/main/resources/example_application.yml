@@ -20,4 +20,8 @@ spring:
         dialect: org.hibernate.dialect.MySQL57Dialect
 logging:
   file:
+
     name: /Coding/Logging/${spring.application.name}/log
+springdoc:
+  api-docs:
+    path: /api-docs

@@ -1,13 +1,10 @@
-
 spring:
   application:
     name: flightreservation
   datasource:
     url: jdbc:mysql://localhost:3306/flightreservation
     username: root
-
-    password: Itguykashi1!
-
+    password: kadima97
     driverClassName: com.mysql.cj.jdbc.Driver
     hikari:
       maximumPoolSize: 10
@@ -23,4 +20,7 @@ spring:
         dialect: org.hibernate.dialect.MySQL57Dialect
 logging:
   file:
-
+    name: /Coding/Logging/${spring.application.name}/log
+springdoc:
+  api-docs:
+    path: /api-docs

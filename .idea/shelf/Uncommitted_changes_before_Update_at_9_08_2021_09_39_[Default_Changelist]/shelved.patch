@@ -1,0 +1,98 @@
+Index: flightreservation/src/main/java/edu/miu/cs/flightreservation/repository/PersonRepository.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.miu.cs.flightreservation.repository;\n\nimport edu.miu.cs.flightreservation.model.Person;\nimport org.springframework.data.jpa.repository.JpaRepository;\nimport org.springframework.stereotype.Repository;\n\n@Repository\npublic interface PersonRepository extends JpaRepository<Person,Long> {\n   Person findPersonByUsername(String username);\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/flightreservation/src/main/java/edu/miu/cs/flightreservation/repository/PersonRepository.java b/flightreservation/src/main/java/edu/miu/cs/flightreservation/repository/PersonRepository.java
+--- a/flightreservation/src/main/java/edu/miu/cs/flightreservation/repository/PersonRepository.java	(revision bcb1ef090aa915972371831f489e34b7a57368f1)
++++ b/flightreservation/src/main/java/edu/miu/cs/flightreservation/repository/PersonRepository.java	(date 1628519864089)
+@@ -2,9 +2,7 @@
+ 
+ import edu.miu.cs.flightreservation.model.Person;
+ import org.springframework.data.jpa.repository.JpaRepository;
+-import org.springframework.stereotype.Repository;
+ 
+-@Repository
+-public interface PersonRepository extends JpaRepository<Person,Long> {
+-   Person findPersonByUsername(String username);
+-}
+\ No newline at end of file
++public interface personRepository extends JpaRepository<Person,Long> {
++
++}
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"dcc59850-b54a-47d3-bcca-f5cc8eff7a86\" name=\"Default Changelist\" comment=\"\" />\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"CodeStyleSettingsInfer\">\n    <option name=\"done\" value=\"true\" />\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"GithubPullRequestsUISettings\">\n    <option name=\"selectedUrlAndAccountId\">\n      <UrlAndAccount>\n        <option name=\"accountId\" value=\"f285bb2a-d1ca-4e58-84c6-8e8904186484\" />\n        <option name=\"url\" value=\"https://github.com/MintuTF/Flight-Reservation-System.git\" />\n      </UrlAndAccount>\n    </option>\n  </component>\n  <component name=\"ProjectCodeStyleSettingsMigration\">\n    <option name=\"version\" value=\"1\" />\n  </component>\n  <component name=\"ProjectId\" id=\"1wScBTq2iPho42sfzOTrWdhDLvA\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\n    <property name=\"aspect.path.notification.shown\" value=\"true\" />\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$/flightreservation/src/main/java/edu/miu/cs/flightreservation/model\" />\n    <property name=\"node.js.detected.package.eslint\" value=\"true\" />\n    <property name=\"node.js.detected.package.tslint\" value=\"true\" />\n    <property name=\"node.js.selected.package.eslint\" value=\"(autodetect)\" />\n    <property name=\"node.js.selected.package.tslint\" value=\"(autodetect)\" />\n    <property name=\"nodejs_package_manager_path\" value=\"npm\" />\n  </component>\n  <component name=\"RecentsManager\">\n    <key name=\"CopyFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/flightreservation/src/main/java/edu/miu/cs/flightreservation/model\" />\n    </key>\n  </component>\n  <component name=\"RunManager\">\n    <configuration default=\"true\" type=\"ArquillianJUnit\" factoryName=\"\" nameIsGenerated=\"true\">\n      <option name=\"arquillianRunConfiguration\">\n        <value>\n          <option name=\"containerStateName\" value=\"\" />\n        </value>\n      </option>\n      <option name=\"TEST_OBJECT\" value=\"class\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"dcc59850-b54a-47d3-bcca-f5cc8eff7a86\" name=\"Default Changelist\" comment=\"\" />\n      <created>1628455295429</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1628455295429</updated>\n      <workItem from=\"1628455299854\" duration=\"1544000\" />\n    </task>\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision bcb1ef090aa915972371831f489e34b7a57368f1)
++++ b/.idea/workspace.xml	(date 1628519872234)
+@@ -1,7 +1,9 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="dcc59850-b54a-47d3-bcca-f5cc8eff7a86" name="Default Changelist" comment="" />
++    <list default="true" id="dcc59850-b54a-47d3-bcca-f5cc8eff7a86" name="Default Changelist" comment="">
++      <change beforePath="$PROJECT_DIR$/flightreservation/src/main/java/edu/miu/cs/flightreservation/repository/PersonRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/flightreservation/src/main/java/edu/miu/cs/flightreservation/repository/PersonRepository.java" afterDir="false" />
++    </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -34,7 +36,7 @@
+     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+     <property name="WebServerToolWindowFactoryState" value="false" />
+     <property name="aspect.path.notification.shown" value="true" />
+-    <property name="last_opened_file_path" value="$PROJECT_DIR$/flightreservation/src/main/java/edu/miu/cs/flightreservation/model" />
++    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+     <property name="node.js.detected.package.eslint" value="true" />
+     <property name="node.js.detected.package.tslint" value="true" />
+     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+@@ -45,19 +47,6 @@
+     <key name="CopyFile.RECENT_KEYS">
+       <recent name="$PROJECT_DIR$/flightreservation/src/main/java/edu/miu/cs/flightreservation/model" />
+     </key>
+-  </component>
+-  <component name="RunManager">
+-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+-      <option name="arquillianRunConfiguration">
+-        <value>
+-          <option name="containerStateName" value="" />
+-        </value>
+-      </option>
+-      <option name="TEST_OBJECT" value="class" />
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
+   </component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+   <component name="TaskManager">
+@@ -68,10 +57,22 @@
+       <option name="presentableId" value="Default" />
+       <updated>1628455295429</updated>
+       <workItem from="1628455299854" duration="1544000" />
++      <workItem from="1628518710572" duration="872000" />
+     </task>
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+     <option name="version" value="3" />
+   </component>
++  <component name="Vcs.Log.Tabs.Properties">
++    <option name="TAB_STATES">
++      <map>
++        <entry key="MAIN">
++          <value>
++            <State />
++          </value>
++        </entry>
++      </map>
++    </option>
++  </component>
+ </project>
+\ No newline at end of file
