@@ -70,8 +70,9 @@ public class ReservationController {
             _reservation.setDepartureDate(reservation.getDepartureDate());
             _reservation.setArrivalPlace(reservation.getArrivalPlace());
             _reservation.setDepartureDeparture(reservation.getDeparturePlace());
-            reservationService.save(_reservation);
             reservationService.updateStatus(_reservation, reservation.getStatus());
+            reservationService.save(_reservation);
+
             int i; int j;
 
             for(i=0;  i<reservation.getTotalPerson(); i++){

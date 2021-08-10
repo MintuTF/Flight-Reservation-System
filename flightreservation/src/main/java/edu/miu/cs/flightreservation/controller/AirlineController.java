@@ -1,5 +1,6 @@
 package edu.miu.cs.flightreservation.controller;
 
+import edu.miu.cs.flightreservation.Util.payload.request.AirlineRequest;
 import edu.miu.cs.flightreservation.model.Address;
 import edu.miu.cs.flightreservation.model.Airline;
 import edu.miu.cs.flightreservation.service.AirlineServiceImpl;
@@ -10,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -40,19 +42,19 @@ public class AirlineController {
     }
 
     @PostMapping()
-    public ResponseEntity<Airline> createAirline(@RequestBody Airline airline){
+    public ResponseEntity<?> createAirline(@Valid @RequestBody  AirlineRequest airline){
         try{
             Airline _airline = new Airline();
             _airline.setHistory(airline.getHistory());
             _airline.setName(airline.getName());
             return new ResponseEntity(airlineService.save(_airline), HttpStatus.CREATED);
         }catch (Exception e){
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Airline> updateAirline(@PathVariable("id") Long id, @RequestBody Airline airline){
+    public ResponseEntity<Airline> updateAirline(@PathVariable("id") Long id, @RequestBody @Valid AirlineRequest airline){
         Airline _airline = airlineService.findById(id);
         if(airline != null){
                 _airline.setName(airline.getName());
