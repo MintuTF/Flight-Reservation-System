@@ -19,11 +19,15 @@ public class Flight {
     private LocalDateTime arrivalTime;
     @OneToMany
     @JoinColumn
+    @Transient
     private List<Ticket> tickets;
     @ManyToOne
+    @Transient
     private Airline airLine;
     @ManyToOne
+    @Transient
     private Airport originAirport;
     @ManyToOne
+    @Transient
     private Airport destinationAirport;
 }
