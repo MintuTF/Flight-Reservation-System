@@ -16,6 +16,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
@@ -95,5 +97,21 @@ public class FlightController {
             return new ResponseEntity<>(HttpStatus.OK);
         }else
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+    @GetMapping("/search")
+    public ResponseEntity<List<Flight>> getFlightsByDepartureDestinationDate(@RequestParam("departure") String departure,
+                                                                             @RequestParam("arrival") String arrival,
+                                                                             @RequestParam("date") String date){
+        Airport departureAirport = airportService.findByCode(departure);
+        Airport arrivalAirport = airportService.findByCode(arrival);
+        if(departureAirport==null || arrivalAirport == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime dateTime = LocalDateTime.parse(date, formatter);
+        System.out.println("my dTETIME:"+dateTime);
+
+        List<Flight>flights = flightService.findFlightByDepartureDestinationAirportForDate(departureAirport,arrivalAirport,dateTime);
+        return new ResponseEntity<>(flights, HttpStatus.OK);
+
     }
 }

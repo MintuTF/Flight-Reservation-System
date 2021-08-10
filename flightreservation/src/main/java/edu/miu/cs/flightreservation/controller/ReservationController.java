@@ -97,14 +97,14 @@ public class ReservationController {
         }
     }
 
-    @GetMapping("/{id}")
+    /*@GetMapping("/{id}")
     public ResponseEntity<Reservation> getReservationById(@PathVariable("id") Long id){
         Reservation _reservation = reservationService.findById(id);
         if(_reservation != null){
             return new ResponseEntity<>(_reservation, HttpStatus.OK);
         }else
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-    }
+    }*/
 
     @PutMapping("/{id}")
     public ResponseEntity<Reservation> updateReservationStatus(@PathVariable("id") Long id, @RequestBody ReservationStatusRequest reservation){
@@ -122,6 +122,15 @@ public class ReservationController {
         if(_reservation != null){
             reservationService.delete(_reservation);
             return new ResponseEntity<>(HttpStatus.OK);
+        }else
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/{code}")
+    public ResponseEntity<Reservation> getReservationById(@PathVariable("code") String code){
+        Reservation _reservation = reservationService.findByCode(code);
+        if(_reservation != null){
+            return new ResponseEntity<>(_reservation, HttpStatus.OK);
         }else
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }

@@ -4,6 +4,7 @@ package edu.miu.cs.flightreservation.service;
 import edu.miu.cs.flightreservation.model.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -15,4 +16,7 @@ public interface ReservationService {
     void delete(Reservation reservation);
     void deleteById(Long id);
     boolean updateStatus(Reservation reservation, String status);
+    Reservation findByCode(String code);
+    List<Reservation> findByCreatedBy(String createdById);
+    List<Reservation> findByPassenger(String passengerId);
 }

@@ -3,7 +3,9 @@ package edu.miu.cs.flightreservation.controller;
 import edu.miu.cs.flightreservation.Util.payload.request.AirlineRequest;
 import edu.miu.cs.flightreservation.model.Address;
 import edu.miu.cs.flightreservation.model.Airline;
+import edu.miu.cs.flightreservation.model.Airport;
 import edu.miu.cs.flightreservation.service.AirlineServiceImpl;
+import edu.miu.cs.flightreservation.service.AirportServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,6 +21,9 @@ import java.util.List;
 public class AirlineController {
     @Autowired
     private AirlineServiceImpl airlineService;
+
+    @Autowired
+    private AirportServiceImpl airportService;
 
     @GetMapping()
     public ResponseEntity<List<Airline>> getAirlinesByPage(){
@@ -72,5 +77,18 @@ public class AirlineController {
             return new ResponseEntity<>(HttpStatus.OK);
         }else
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Airline>> getAirlinesByAirportCode(@RequestParam String airport){
+        Airport _airport = airportService.findByCode(airport);
+        System.err.println("CODE ======== "+ airport);
+        System.err.println("Airport    ======= "+_airport);
+        if(_airport != null) {
+            List<Airline> airlines = airlineService.findAirlinesByAirportCode(_airport.getCode());
+            if (airlines != null && !airlines.isEmpty())
+                return new ResponseEntity<>(airlines, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }
