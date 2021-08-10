@@ -2,6 +2,8 @@ package edu.miu.cs.flightreservation.model;
 
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 
@@ -11,15 +13,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Data
-
-
 @Embeddable
-
-@Entity
 public class Address {
-    @Id
-    @GeneratedValue
-    private long id;
     private String street;
     private String city;
     private String state;
