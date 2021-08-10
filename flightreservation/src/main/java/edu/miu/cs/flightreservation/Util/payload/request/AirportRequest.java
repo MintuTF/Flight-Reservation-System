@@ -16,4 +16,5 @@ public class AirportRequest {
     private String city;
     private String state;
     private String zip;
+    private String code;
 }

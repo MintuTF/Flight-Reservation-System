@@ -48,15 +48,16 @@ public class FlightServiceImpl implements FlightService{
 
     public boolean exists(long[] flights) {
         boolean result = true;
-        for(int i=0; i<flights.length; i++){
+        for (int i = 0; i < flights.length; i++) {
             Flight flight = repository.findById(flights[i]).orElse(null);
-            if(flight == null)
+            if (flight == null)
                 result = false;
         }
         return result;
+    }
 
     public void delete(Flight flight){
         repository.delete(flight);
-
     }
+
 }

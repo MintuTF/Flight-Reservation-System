@@ -73,7 +73,7 @@ public class ReservationController {
             reservationService.save(_reservation);
             reservationService.updateStatus(_reservation, reservation.getStatus());
             int i; int j;
-            System.out.println(reservation.getTotalPerson());
+
             for(i=0;  i<reservation.getTotalPerson(); i++){
                 for(j=0; j<flights.length; j++) {
                     try{
@@ -85,8 +85,6 @@ public class ReservationController {
                         //TODO uncomment
                         //_ticket.setDate(_ticket.getFlight().getDepartureTime());
                         ticketService.createTicket(_ticket);
-                        System.out.println(_ticket);
-                        System.out.println(_ticket.getReservation().getReservationCode());
                     }catch (Exception exception){
                         exception.printStackTrace();
                     }
