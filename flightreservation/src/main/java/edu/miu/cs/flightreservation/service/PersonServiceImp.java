@@ -1,8 +1,7 @@
 package edu.miu.cs.flightreservation.service;
 
 
-import edu.miu.cs.flightreservation.Util.payload.SignupRequest;
-import edu.miu.cs.flightreservation.model.Address;
+import edu.miu.cs.flightreservation.Util.payload.request.SignupRequest;
 import edu.miu.cs.flightreservation.model.Person;
 import edu.miu.cs.flightreservation.model.Role;
 import edu.miu.cs.flightreservation.repository.PersonRepository;
@@ -11,11 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.Embedded;
-import javax.persistence.ManyToMany;
-import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class PersonServiceImp implements PersonService{
@@ -28,14 +23,25 @@ public class PersonServiceImp implements PersonService{
 
 
    @Override
-    public Person createPerson(SignupRequest signupRequest) {
+    public void createPerson(SignupRequest signupRequest) {
        System.out.println(signupRequest);
-   Person person1=new Person(signupRequest.getUsername(),
+    Person person1=new Person(signupRequest.getUsername(),
            signupRequest.getPassword(),
            signupRequest.getStatus(), signupRequest.getFirstName(),
-           signupRequest.getLastName(), signupRequest.getEmail(),
-           userRoleService.userRole(signupRequest));
-        return personRepository.save(person1);
+           signupRequest.getLastName(), signupRequest.getEmail()
+            ,signupRequest.getAddress()
+           );
+       Role role=userRoleService.findRoleByName
+               (userRoleService.convertEnumTOString
+                       (signupRequest)).get();
+
+
+             role.addPerson(person1);
+
+              person1.addRoles(role);
+
+       personRepository.save(person1);
+
     }
 
     @Override
@@ -62,10 +68,11 @@ public class PersonServiceImp implements PersonService{
        Person person1=personRepository.findPersonById(id);
        person1.setFirstName(signupRequest.getFirstName());
        person1.setLastName(signupRequest.getLastName());
-       //person1.setAddress(signupRequest.getAddress());
+       person1.setAddress(signupRequest.getAddress());
        person1.setUsername(signupRequest.getUsername());
        person1.setStatus("Active");
-       //person1.setRoles(userRoleService.userRole(signupRequest));
+       person1.setRoles(userRoleService.
+               convertToEnumRole(signupRequest));
 
 
        return personRepository.save(person1);

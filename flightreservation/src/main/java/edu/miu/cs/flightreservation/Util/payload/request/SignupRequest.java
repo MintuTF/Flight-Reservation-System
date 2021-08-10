@@ -1,4 +1,4 @@
-package edu.miu.cs.flightreservation.Util.payload;
+package edu.miu.cs.flightreservation.Util.payload.request;
 
 import edu.miu.cs.flightreservation.model.Address;
 import edu.miu.cs.flightreservation.model.Role;
@@ -22,6 +22,6 @@ public class SignupRequest {
 
     private Set<String> roles;
 
-  //  private Address address;
+    private Address address;
 
 }

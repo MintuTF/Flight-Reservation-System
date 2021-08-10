@@ -1,6 +1,6 @@
 package edu.miu.cs.flightreservation.controller;
 
-import edu.miu.cs.flightreservation.Util.payload.SignupRequest;
+import edu.miu.cs.flightreservation.Util.payload.request.SignupRequest;
 import edu.miu.cs.flightreservation.model.Person;
 import edu.miu.cs.flightreservation.service.PersonServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +9,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 @RestController
 @RequestMapping("api/persons")
@@ -44,11 +42,11 @@ public class PersonController {
         ResponseEntity<?> responseEntity=null;
         try {
 
-             Person getUser = personServiceImp.createPerson(signupRequest);
-            if (getUser != null) {
+              personServiceImp.createPerson(signupRequest);
 
-                responseEntity=new ResponseEntity<>(getUser, HttpStatus.OK);
-            }
+
+                responseEntity=new ResponseEntity<>("User successfully created"+signupRequest, HttpStatus.OK);
+
         } catch (Exception e) {
             responseEntity =new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 
