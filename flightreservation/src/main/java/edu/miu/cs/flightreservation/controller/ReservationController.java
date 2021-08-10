@@ -70,10 +70,11 @@ public class ReservationController {
             _reservation.setDepartureDate(reservation.getDepartureDate());
             _reservation.setArrivalPlace(reservation.getArrivalPlace());
             _reservation.setDepartureDeparture(reservation.getDeparturePlace());
-            reservationService.save(_reservation);
             reservationService.updateStatus(_reservation, reservation.getStatus());
+            reservationService.save(_reservation);
+
             int i; int j;
-            System.out.println(reservation.getTotalPerson());
+
             for(i=0;  i<reservation.getTotalPerson(); i++){
                 for(j=0; j<flights.length; j++) {
                     try{
@@ -85,8 +86,6 @@ public class ReservationController {
                         //TODO uncomment
                         //_ticket.setDate(_ticket.getFlight().getDepartureTime());
                         ticketService.createTicket(_ticket);
-                        System.out.println(_ticket);
-                        System.out.println(_ticket.getReservation().getReservationCode());
                     }catch (Exception exception){
                         exception.printStackTrace();
                     }
@@ -98,14 +97,14 @@ public class ReservationController {
         }
     }
 
-    @GetMapping("/{id}")
+    /*@GetMapping("/{id}")
     public ResponseEntity<Reservation> getReservationById(@PathVariable("id") Long id){
         Reservation _reservation = reservationService.findById(id);
         if(_reservation != null){
             return new ResponseEntity<>(_reservation, HttpStatus.OK);
         }else
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-    }
+    }*/
 
     @PutMapping("/{id}")
     public ResponseEntity<Reservation> updateReservationStatus(@PathVariable("id") Long id, @RequestBody ReservationStatusRequest reservation){
@@ -123,6 +122,15 @@ public class ReservationController {
         if(_reservation != null){
             reservationService.delete(_reservation);
             return new ResponseEntity<>(HttpStatus.OK);
+        }else
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/{code}")
+    public ResponseEntity<Reservation> getReservationById(@PathVariable("code") String code){
+        Reservation _reservation = reservationService.findByCode(code);
+        if(_reservation != null){
+            return new ResponseEntity<>(_reservation, HttpStatus.OK);
         }else
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }

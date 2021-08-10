@@ -68,5 +68,20 @@ public class ReservationServiceImpl implements ReservationService{
         return true;
     }
 
+    @Override
+    public Reservation findByCode(String code) {
+        return reservationRepository.findByCode(code).orElse(null);
+    }
+
+    @Override
+    public List<Reservation> findByCreatedBy(String createdById) {
+        return reservationRepository.findByCreatedBy(createdById);
+    }
+
+    @Override
+    public List<Reservation> findByPassenger(String passengerId) {
+        return reservationRepository.findByPassenger(passengerId);
+    }
+
 
 }

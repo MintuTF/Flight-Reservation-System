@@ -14,4 +14,5 @@ public interface AirlineService {
     public Airline findById(Long id);
     public void delete(Airline airline);
     public void deleteById(Long id);
+    public List<Airline> findAirlinesByAirportCode(String code);
 }

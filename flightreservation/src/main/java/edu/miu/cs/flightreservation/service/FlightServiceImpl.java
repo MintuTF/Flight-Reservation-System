@@ -1,10 +1,12 @@
 package edu.miu.cs.flightreservation.service;
 
+import edu.miu.cs.flightreservation.model.Airport;
 import edu.miu.cs.flightreservation.model.Flight;
 import edu.miu.cs.flightreservation.repository.FlightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 
 import edu.miu.cs.flightreservation.model.Airline;
@@ -39,22 +41,22 @@ public class FlightServiceImpl implements FlightService{
 
 
     @Override
-
     public Flight findById(long id) {
         return repository.findById(id).get();
     }
 
+    @Override
+    public Flight update(Flight flight) {
+        return repository.save(flight);
+    }
+
+    @Override
     public Flight update(long id) {
         Boolean exist = repository.existsById(id);
         if (exist) {
             return repository.save(repository.getById(id));
         }
         return null;
-    }
-    @Override
-    public Flight update(Flight flight) {
-        return repository.save(flight);
-
     }
 
     @Override
@@ -63,7 +65,6 @@ public class FlightServiceImpl implements FlightService{
     }
 
     @Override
-
     public boolean exists(long[] flights) {
         boolean result = true;
         for (int i = 0; i < flights.length; i++) {
@@ -73,8 +74,19 @@ public class FlightServiceImpl implements FlightService{
         }
         return result;
     }
-    @Override
+
     public void delete(Flight flight){
         repository.delete(flight);
     }
+
+    public List<Flight> findFlightsByDepartureAndArrivalDate(LocalDateTime departureDate,
+                                                             LocalDateTime arrivalDate){
+        return repository.findFlightsByDepartureAndArrivalDate(departureDate, arrivalDate);
+    }
+
+    @Override
+    public List<Flight> findFlightByDepartureDestinationAirportForDate(Airport departureAirport, Airport arrivalAirport, LocalDateTime departureDate) {
+        return repository.findFlightByDepartureDestinationAirportForDate(departureAirport,arrivalAirport,departureDate);
+    }
+
 }

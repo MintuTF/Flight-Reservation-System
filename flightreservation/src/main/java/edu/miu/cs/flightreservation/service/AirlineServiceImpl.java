@@ -47,6 +47,11 @@ public class AirlineServiceImpl implements AirlineService {
     }
 
     @Override
+    public List<Airline> findAirlinesByAirportCode(String code) {
+        return airlineRepository.findAirlinesByAirportCode(code);
+    }
+
+    @Override
     public Airline save(Airline airline) {
         return airlineRepository.save(airline);
     }

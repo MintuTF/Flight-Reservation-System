@@ -45,8 +45,10 @@ public class AirportController {
             _address.setCity(airport.getCity());
             _address.setStreet(airport.getStreet());
             _address.setZip(airport.getZip());
+            _address.setZip(airport.getZip());
             Airport _airport = new Airport();
             _airport.setName(airport.getName());
+            _airport.setCode(airport.getCode());
             _airport.setAddress(_address);
 
             return new ResponseEntity(airportService.save(_airport), HttpStatus.CREATED);
@@ -76,6 +78,7 @@ public class AirportController {
             _airport.setName(airport.getName());
             _airport.setAddress(_address);
             _airport.setName(airport.getName());
+            _airport.setCode(airport.getCode());
             return new ResponseEntity<>(airportService.save(_airport), HttpStatus.OK);
         }else
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
