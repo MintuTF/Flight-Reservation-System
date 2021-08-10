@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -13,16 +14,24 @@ public class Reservation {
     @GeneratedValue
     private long id;
     private String reservationCode;
-    private LocalDate reservationDate;
+    private LocalDate departureDate;
+    private LocalDate arrivalDate;
     private String departureDeparture;
     private String arrivalPlace;
     @ManyToOne
     private Person createdBy;
     @ManyToOne
     private Person passenger;
-    @OneToMany
-    private List <Ticket> tickets;
+    @OneToMany(mappedBy = "reservation")
+    private List <Ticket> tickets= new ArrayList<Ticket>();
+    @Enumerated(EnumType.STRING)
     private Status status;
+
+    /*public void addTicket(Ticket ticket){
+        this.tickets.add(ticket);
+        ticket.setReservation(this);
+        ticket.setReservationCode(this.reservationCode);
+    }*/
 
     /*public Reservation(long id, String reservationCode, LocalDate reservationDate, String departureDeparture, String arrivalPlace, Person person, List<Ticket> tickets, Status status) {
         this.id = id;
@@ -36,7 +45,7 @@ public class Reservation {
         this.status = status;
     }*/
 
-    public void Reservation() {
+    public Reservation() {
         this.reservationCode = UtilService.generateAlphanumeric(UtilService.DEFAULT_LENGTH);
     }
 
@@ -44,7 +53,4 @@ public class Reservation {
         this.status=status;
     }
 
-    public void generateCode(){
-
-    }
 }

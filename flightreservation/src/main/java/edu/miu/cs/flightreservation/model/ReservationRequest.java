@@ -6,7 +6,6 @@ import java.time.LocalDate;
 
 @Data
 public class ReservationRequest {
-    private long person_id;
     private String firstName;
     private String lastName;
     private String departurePlace;
@@ -14,8 +13,10 @@ public class ReservationRequest {
     private String email;
     private String gender;
     private String phoneNumber;
-    private long passportId;
+    private String passportId;
     private long[] flights;
     private LocalDate departureDate;
     private LocalDate arrivalDate;
+    private int totalPerson;
+    private String status;
 }

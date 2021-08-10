@@ -1,11 +1,7 @@
 package edu.miu.cs.flightreservation.controller;
 
-import edu.miu.cs.flightreservation.model.Flight;
-import edu.miu.cs.flightreservation.model.Reservation;
-import edu.miu.cs.flightreservation.model.ReservationRequest;
-import edu.miu.cs.flightreservation.service.AddressServiceImpl;
-import edu.miu.cs.flightreservation.service.FlightServiceImpl;
-import edu.miu.cs.flightreservation.service.ReservationServiceImpl;
+import edu.miu.cs.flightreservation.model.*;
+import edu.miu.cs.flightreservation.service.*;
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -14,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.List;
@@ -26,6 +23,12 @@ public class ReservationController {
 
     @Autowired
     private FlightServiceImpl flightService;
+
+    @Autowired
+    private PersonServiceImp personService;
+
+    @Autowired
+    private TicketServiceImp ticketService;
 
     @GetMapping()
     public ResponseEntity<List<Reservation>> getReservationsByPage(){
@@ -40,16 +43,68 @@ public class ReservationController {
     }
 
     @PostMapping()
+    @Transactional(Transactional.TxType.REQUIRES_NEW)
     public ResponseEntity<Reservation> createReservation(@RequestBody @Valid ReservationRequest reservation){
-        long[] flights = reservation.getFlights();
-
-
         try{
-            Reservation _reservation = new Reservation();
-            _reservation.generateCode();
+            long[] flights = reservation.getFlights();
+            //if(!flightService.exists(flights))
+                //return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 
-            return new ResponseEntity(reservationService.save(_reservation), HttpStatus.CREATED);
-        }catch (Exception e){
+            //TODO check if all flights are in the database
+            Person person = new Person();
+            person.setFirstName(reservation.getFirstName());
+            person.setLastName(reservation.getLastName());
+            person.setEmail(reservation.getEmail());
+            person.setPassportId(reservation.getPassportId());
+            person.setPhoneNumber(reservation.getPhoneNumber());
+            person.setGender(reservation.getGender());
+            //TODO generate the encrypted password
+            person.setPassword("password");
+            Person _person = personService.createPerson(person);
+
+            Reservation _reservation = new Reservation();
+            _reservation.setDepartureDate(reservation.getDepartureDate());
+            //TODO get the current authenticated user and pass it
+            _reservation.setCreatedBy(null);
+            _reservation.setArrivalDate(reservation.getArrivalDate());
+            _reservation.setDepartureDate(reservation.getDepartureDate());
+            _reservation.setArrivalPlace(reservation.getArrivalPlace());
+            _reservation.setDepartureDeparture(reservation.getDeparturePlace());
+            reservationService.save(_reservation);
+
+            switch (reservation.getStatus()){
+                case "reserved" :
+                    _reservation.setStatus(Status.RESERVED);
+                    break;
+                case "confirmed" :
+                    _reservation.setStatus(Status.CONFIRMED);
+                    break;
+                case "cancelled" :
+                    _reservation.setStatus(Status.CANCELLED);
+                    break;
+            }
+            int i; int j;
+            System.out.println(reservation.getTotalPerson());
+            for(i=0;  i<reservation.getTotalPerson(); i++){
+                for(j=0; j<flights.length; j++) {
+                    try{
+                        Ticket _ticket = new Ticket();
+                        //TODO uncomment
+                        //_ticket.setFlight(flightService.findById(flights[j]));
+                        _ticket.setFlight(null);
+                        _ticket.setReservation(_reservation);
+                        //TODO uncomment
+                        //_ticket.setDate(_ticket.getFlight().getDepartureTime());
+                        ticketService.createTicket(_ticket);
+                        System.out.println(_ticket);
+                        System.out.println(_ticket.getReservation().getReservationCode());
+                    }catch (Exception exception){
+                        exception.printStackTrace();
+                    }
+                }
+            }
+            return new ResponseEntity(_reservation, HttpStatus.CREATED);
+        }catch (Exception ex){
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

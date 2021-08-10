@@ -1,9 +1,6 @@
 package edu.miu.cs.flightreservation.service;
 
-import edu.miu.cs.flightreservation.model.Person;
-import edu.miu.cs.flightreservation.model.Reservation;
-import edu.miu.cs.flightreservation.model.Status;
-import edu.miu.cs.flightreservation.model.Ticket;
+import edu.miu.cs.flightreservation.model.*;
 import edu.miu.cs.flightreservation.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -49,4 +46,5 @@ public class ReservationServiceImpl implements ReservationService{
     public void deleteById(Long id) {
         reservationRepository.deleteById(id);
     }
+
 }
