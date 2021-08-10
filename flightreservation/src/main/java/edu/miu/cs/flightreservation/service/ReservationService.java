@@ -14,4 +14,5 @@ public interface ReservationService {
     Reservation findById(Long id);
     void delete(Reservation reservation);
     void deleteById(Long id);
+    boolean updateStatus(Reservation reservation, String status);
 }

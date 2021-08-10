@@ -47,4 +47,26 @@ public class ReservationServiceImpl implements ReservationService{
         reservationRepository.deleteById(id);
     }
 
+    @Override
+    public boolean updateStatus(Reservation reservation, String status) {
+        if(status.isBlank())
+            return false;
+        switch (status){
+            case "reserved" :
+                reservation.setStatus(Status.RESERVED);
+                break;
+            case "confirmed" :
+                reservation.setStatus(Status.CONFIRMED);
+                break;
+            case "cancelled" :
+                reservation.setStatus(Status.CANCELLED);
+                break;
+            default:
+                return false;
+        }
+        reservationRepository.save(reservation);
+        return true;
+    }
+
+
 }

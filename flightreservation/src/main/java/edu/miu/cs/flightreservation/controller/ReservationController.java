@@ -1,6 +1,7 @@
 package edu.miu.cs.flightreservation.controller;
 
 import edu.miu.cs.flightreservation.Util.payload.request.ReservationRequest;
+import edu.miu.cs.flightreservation.Util.payload.request.ReservationStatusRequest;
 import edu.miu.cs.flightreservation.model.*;
 import edu.miu.cs.flightreservation.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,18 +71,7 @@ public class ReservationController {
             _reservation.setArrivalPlace(reservation.getArrivalPlace());
             _reservation.setDepartureDeparture(reservation.getDeparturePlace());
             reservationService.save(_reservation);
-
-            switch (reservation.getStatus()){
-                case "reserved" :
-                    _reservation.setStatus(Status.RESERVED);
-                    break;
-                case "confirmed" :
-                    _reservation.setStatus(Status.CONFIRMED);
-                    break;
-                case "cancelled" :
-                    _reservation.setStatus(Status.CANCELLED);
-                    break;
-            }
+            reservationService.updateStatus(_reservation, reservation.getStatus());
             int i; int j;
             System.out.println(reservation.getTotalPerson());
             for(i=0;  i<reservation.getTotalPerson(); i++){
@@ -118,9 +108,10 @@ public class ReservationController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Reservation> updateReservation(@PathVariable("id") Long id, @RequestBody Reservation reservation){
+    public ResponseEntity<Reservation> updateReservationStatus(@PathVariable("id") Long id, @RequestBody ReservationStatusRequest reservation){
         Reservation _reservation = reservationService.findById(id);
         if(_reservation != null){
+            reservationService.updateStatus(_reservation, reservation.getStatus());
                 return new ResponseEntity<>(reservationService.save(_reservation), HttpStatus.OK);
         }else
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
