@@ -22,7 +22,7 @@ public class Reservation {
     private Person createdBy;
     @ManyToOne
     private Person passenger;
-    @OneToMany(mappedBy = "reservation")
+    @OneToMany(mappedBy = "reservation", cascade = CascadeType.ALL)
     private List <Ticket> tickets= new ArrayList<Ticket>();
     @Enumerated(EnumType.STRING)
     private Status status;

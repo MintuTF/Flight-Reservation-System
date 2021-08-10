@@ -1,8 +1,8 @@
 package edu.miu.cs.flightreservation.controller;
 
+import edu.miu.cs.flightreservation.Util.payload.request.ReservationRequest;
 import edu.miu.cs.flightreservation.model.*;
 import edu.miu.cs.flightreservation.service.*;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -60,7 +59,7 @@ public class ReservationController {
             person.setGender(reservation.getGender());
             //TODO generate the encrypted password
             person.setPassword("password");
-            Person _person = personService.createPerson(person);
+            Person _person = personService.save(person);
 
             Reservation _reservation = new Reservation();
             _reservation.setDepartureDate(reservation.getDepartureDate());

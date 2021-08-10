@@ -1,4 +1,4 @@
-package edu.miu.cs.flightreservation.model;
+package edu.miu.cs.flightreservation.Util.payload.request;
 
 import lombok.Data;
 
