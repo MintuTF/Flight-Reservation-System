@@ -19,6 +19,8 @@ public interface PersonService {
        Person updatePerson(Long id, SignupRequest signupRequest);
        Person getOnePersonById(Long id);
 
+       Person save(Person person);
+
 
 
 }

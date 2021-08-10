@@ -13,5 +13,9 @@ public interface FlightService {
     public Flight findById(long id);
     public Flight update(Flight flight);
     public Flight create(Flight flight);
+
+    boolean exists(long[] flights);
+
     public void delete(Flight flight);
+
 }

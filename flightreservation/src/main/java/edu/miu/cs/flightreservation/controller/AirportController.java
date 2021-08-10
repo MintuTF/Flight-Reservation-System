@@ -1,7 +1,10 @@
 package edu.miu.cs.flightreservation.controller;
 
+import edu.miu.cs.flightreservation.Util.payload.request.AirportRequest;
+import edu.miu.cs.flightreservation.model.Address;
 import edu.miu.cs.flightreservation.model.Airline;
 import edu.miu.cs.flightreservation.model.Airport;
+import edu.miu.cs.flightreservation.service.AddressService;
 import edu.miu.cs.flightreservation.service.AirportServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -10,6 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -31,11 +36,20 @@ public class AirportController {
     }
 
     @PostMapping()
-    public ResponseEntity<Airport> createAirport(@RequestBody Airport airport){
+    @Transactional(Transactional.TxType.REQUIRES_NEW)
+    public ResponseEntity<Airport> createAirport(@RequestBody @Valid AirportRequest airport){
         try{
+
+            Address _address = new Address();
+            _address.setState(airport.getState());
+            _address.setCity(airport.getCity());
+            _address.setStreet(airport.getStreet());
+            _address.setZip(airport.getZip());
             Airport _airport = new Airport();
             _airport.setName(airport.getName());
-            return new ResponseEntity(airportService.save(airport), HttpStatus.CREATED);
+            _airport.setAddress(_address);
+
+            return new ResponseEntity(airportService.save(_airport), HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -51,9 +65,16 @@ public class AirportController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Airport> updateAirport(@PathVariable("id") Long id, @RequestBody Airport airport){
+    public ResponseEntity<Airport> updateAirport(@PathVariable("id") Long id, @RequestBody AirportRequest airport){
         Airport _airport = airportService.findById(id);
         if(airport != null){
+            Address _address = new Address();
+            _address.setState(airport.getState());
+            _address.setCity(airport.getCity());
+            _address.setStreet(airport.getStreet());
+            _address.setZip(airport.getZip());
+            _airport.setName(airport.getName());
+            _airport.setAddress(_address);
             _airport.setName(airport.getName());
             return new ResponseEntity<>(airportService.save(_airport), HttpStatus.OK);
         }else

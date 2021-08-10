@@ -10,8 +10,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class PersonServiceImp implements PersonService{
 
@@ -83,5 +81,10 @@ public class PersonServiceImp implements PersonService{
     public Person getOnePersonById(Long id) {
 
        return personRepository.findPersonById(id);
+    }
+
+    @Override
+    public Person save(Person person) {
+        return personRepository.save(person);
     }
 }

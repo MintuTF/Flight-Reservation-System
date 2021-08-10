@@ -13,7 +13,6 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@NoArgsConstructor
 @ToString(exclude = "roles")
 public class Person {
     @Id
@@ -25,6 +24,13 @@ public class Person {
     private String firstName;
     private String lastName;
     private  String email;
+    private String passportId;
+    private String phoneNumber;
+    private String gender;
+
+    public Person(){
+        this.status = "ACTIVE";
+    }
 
     @ManyToMany(mappedBy = "people")
     private Set<Role> roles= new HashSet<>();
@@ -41,8 +47,6 @@ public class Person {
         this.lastName = lastName;
         this.email = email;
         this.address=address;
-
-
     }
 
     public boolean addRoles(Role role){
@@ -57,5 +61,4 @@ public class Person {
     public boolean addOneRole(Role role){
      return this.roles.add(role);
     }
-
 }
