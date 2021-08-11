@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api/persons")
 public class PersonController {
@@ -45,7 +47,7 @@ public class PersonController {
               personServiceImp.createPerson(signupRequest);
 
 
-                responseEntity=new ResponseEntity<>("User successfully created"+signupRequest, HttpStatus.OK);
+                responseEntity=new ResponseEntity<>("User successfully created", HttpStatus.OK);
 
         } catch (Exception e) {
             responseEntity =new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);

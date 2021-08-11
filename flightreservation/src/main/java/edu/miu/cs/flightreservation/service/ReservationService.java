@@ -19,4 +19,5 @@ public interface ReservationService {
     Reservation findByCode(String code);
     List<Reservation> findByCreatedBy(String createdById);
     List<Reservation> findByPassenger(String passengerId);
+    List<Reservation> findAllByPersonId(Long personId);
 }

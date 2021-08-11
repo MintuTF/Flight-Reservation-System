@@ -2,6 +2,8 @@ package edu.miu.cs.flightreservation.service;
 
 
 import edu.miu.cs.flightreservation.Util.payload.request.SignupRequest;
+import edu.miu.cs.flightreservation.Util.security.jwt.JwtUtils;
+import edu.miu.cs.flightreservation.model.ERole;
 import edu.miu.cs.flightreservation.model.Person;
 import edu.miu.cs.flightreservation.model.Role;
 import edu.miu.cs.flightreservation.repository.PersonRepository;
@@ -9,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Optional;
 
 @Service
 public class PersonServiceImp implements PersonService{
@@ -18,6 +23,9 @@ public class PersonServiceImp implements PersonService{
 
     @Autowired
     private UserRoleService userRoleService;
+
+    @Autowired
+    private JwtUtils jwtUtils;
 
 
    @Override
@@ -29,15 +37,12 @@ public class PersonServiceImp implements PersonService{
            signupRequest.getLastName(), signupRequest.getEmail()
             ,signupRequest.getAddress()
            );
+
        Role role=userRoleService.findRoleByName
                (userRoleService.convertEnumTOString
                        (signupRequest)).get();
-
-
              role.addPerson(person1);
-
               person1.addRoles(role);
-
        personRepository.save(person1);
 
     }
@@ -86,5 +91,19 @@ public class PersonServiceImp implements PersonService{
     @Override
     public Person save(Person person) {
         return personRepository.save(person);
+    }
+
+    @Override
+    public Person findByEmail(String email) {
+        return personRepository.findPersonByEmail(email).orElse(null);
+    }
+
+    public Person getPersonFromToken(HttpServletRequest httpServletRequest){
+        String header = jwtUtils.parseJwt(httpServletRequest);
+        String email = jwtUtils.getUserNameFromJwtToken(header);
+        if(email != null)
+            return personRepository.findPersonByEmail(email).orElse(null);
+
+        return null;
     }
 }

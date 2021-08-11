@@ -24,3 +24,6 @@ logging:
 springdoc:
   api-docs:
     path: /api-docs
+
+jwt.secret.key: password
+jwt.expiration.time: 9000000
