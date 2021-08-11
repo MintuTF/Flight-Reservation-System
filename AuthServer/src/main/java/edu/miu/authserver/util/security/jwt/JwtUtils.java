@@ -28,7 +28,7 @@ public class JwtUtils {
 
         UserDetailsimp userDetailsimp=(UserDetailsimp) authentication.getPrincipal();
 
-        return Jwts.builder().setSubject(userDetailsimp.getUsername())
+        return Jwts.builder().setSubject(userDetailsimp.getUserDetails().getEmail())
                               .setIssuedAt(new Date())
                              .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
                              .signWith(SignatureAlgorithm.HS256,secretKey)
@@ -63,7 +63,7 @@ public class JwtUtils {
         String headerAuth = request.getHeader("Authorization");
 
         if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")) {
-            return headerAuth.substring(7, headerAuth.length());
+            return headerAuth.substring(7);
         }
 
         return null;

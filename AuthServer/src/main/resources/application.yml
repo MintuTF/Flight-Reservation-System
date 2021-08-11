@@ -1,6 +1,8 @@
+server:
+  port: 8010
 spring:
   application:
-    name: flightreservation
+    name: flight-reservation-auth-service
   datasource:
     url: jdbc:mysql://localhost:3306/useraccess
     username: root
@@ -21,9 +23,16 @@ spring:
 logging:
   file:
     name: /Coding/Logging/${spring.application.name}/log
-    server:
-      port: 8080
+
     #            password: cs572
 
-jwt.secret.key: minte
-jwt.expiration.time: 1000000
+jwt.secret.key: password
+jwt.expiration.time: 9000000
+spring-boot-server.name: flight-reservation-main
+
+
+springdoc:
+  api-docs:
+    path: /api-docs
+
+
