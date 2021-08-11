@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/AuthServer/AuthServer.iml" filepath="$PROJECT_DIR$/AuthServer/AuthServer.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Flight-Reservation-System.iml" filepath="$PROJECT_DIR$/.idea/Flight-Reservation-System.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RegistryServer/RegistryServer.iml" filepath="$PROJECT_DIR$/RegistryServer/RegistryServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/flightreservation/flightreservation.iml" filepath="$PROJECT_DIR$/flightreservation/flightreservation.iml" />
     </modules>
   </component>
 </project>
