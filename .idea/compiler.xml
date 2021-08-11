@@ -2,7 +2,10 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+<<<<<<< HEAD
       <profile default="true" name="Default" enabled="true" />
+=======
+>>>>>>> 5f9fc203e67e67b03c2f487cf5b0eea39a6e2db2
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -20,7 +23,10 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+<<<<<<< HEAD
       <module name="AuthServer" options="-parameters" />
+=======
+>>>>>>> 5f9fc203e67e67b03c2f487cf5b0eea39a6e2db2
       <module name="RegistryServer" options="-parameters" />
       <module name="flightreservation" options="-parameters" />
     </option>

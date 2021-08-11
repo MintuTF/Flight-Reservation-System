@@ -3,6 +3,7 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/flightreservation/pom.xml" />
         <option value="$PROJECT_DIR$/RegistryServer/pom.xml" />
         <option value="$PROJECT_DIR$/AuthServer/pom.xml" />
@@ -10,4 +11,13 @@
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
+=======
+        <option value="$PROJECT_DIR$/AuthServer/pom.xml" />
+        <option value="$PROJECT_DIR$/flightreservation/pom.xml" />
+        <option value="$PROJECT_DIR$/RegistryServer/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
+>>>>>>> 5f9fc203e67e67b03c2f487cf5b0eea39a6e2db2
 </project>

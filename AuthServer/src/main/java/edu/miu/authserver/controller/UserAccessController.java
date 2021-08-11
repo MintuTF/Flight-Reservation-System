@@ -3,6 +3,7 @@ package edu.miu.authserver.controller;
 
 
 import edu.miu.authserver.model.UserAccess;
+import edu.miu.authserver.service.AuthService;
 import edu.miu.authserver.service.UserAccessService;
 import edu.miu.authserver.util.payload.LoginRequest;
 import edu.miu.authserver.util.payload.SignupRequest;
@@ -14,17 +15,22 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
-@RequestMapping("/api/public")
-@Transactional
+@RequestMapping("/api/")
+
 public class UserAccessController {
 
     @Autowired
     private UserAccessService userAccessService;
 
+    @Autowired
+    private AuthService authService;
 
 
-    @PostMapping ("signin")
+
+    @PostMapping ("/persons/signin")
     public ResponseEntity<?> signin(@RequestBody LoginRequest user) {
 
         System.out.println("======here");
@@ -42,17 +48,16 @@ public class UserAccessController {
     }
 
 
-    @PostMapping("signup")
-    public ResponseEntity<?> signup(@RequestBody SignupRequest signupRequest) {
+    @PostMapping("/person/signup")
+    public ResponseEntity<?> signup(@RequestBody SignupRequest signupRequest,HttpServletRequest servletRequest) {
 
         ResponseEntity<?> responseEntity=null;
         try {
 
-            UserAccessResponse getUser = userAccessService.createUser(signupRequest);
-            if (getUser != null) {
+            responseEntity =authService.createPerson(signupRequest,servletRequest);
 
-                        responseEntity=new ResponseEntity<>(getUser, HttpStatus.OK);
-            }
+                      //  responseEntity=new ResponseEntity<>("successfull created", HttpStatus.OK);
+
         } catch (Exception e) {
             responseEntity =new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 
@@ -66,5 +71,34 @@ public class UserAccessController {
         return new ResponseEntity<>("Hello world", HttpStatus.OK);
 
     }
+    @GetMapping("*/{id}")
+    public ResponseEntity<?> testAuth(@PathVariable String id, HttpServletRequest request) {
+
+      ResponseEntity<?> responseEntity=  authService.findOnePerson(id,request);
+
+        return responseEntity;
+
+    }
+    @GetMapping("*")
+    public ResponseEntity<?> testAuthAll(@PathVariable String id, HttpServletRequest request) {
+
+        ResponseEntity<?> responseEntity=  authService.findOnePerson(id,request);
+
+        return responseEntity;
+
+    }
+
+
+//    @GetMapping("*/*")
+//    public ResponseEntity<?> testAuth(@PathVariable String id, HttpServletRequest request) {
+//
+//        ResponseEntity<?> responseEntity=  authService.findOnePerson(id,request);
+//
+//        return responseEntity;
+//
+//    }
+
+
+
 
 }

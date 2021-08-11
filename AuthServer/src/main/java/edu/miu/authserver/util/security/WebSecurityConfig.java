@@ -86,6 +86,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 // Our public endpoints
                 .antMatchers("/api/public/signin","/api/public/signup").permitAll()
+               // .antMatchers(HttpMethod.GET,"/swagger-ui.html").permitAll()
                 // Our private endpoints
                 .anyRequest().authenticated();
 

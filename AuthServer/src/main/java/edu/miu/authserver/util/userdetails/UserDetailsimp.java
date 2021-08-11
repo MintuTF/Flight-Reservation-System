@@ -15,8 +15,8 @@ import java.util.stream.Collectors;
 @Transactional
 public class UserDetailsimp implements UserDetails {
     private static final long serialVersionUID = 1L;
-    private UserAccess userAccess;
-    private Collection<? extends GrantedAuthority> authorities;
+    private final UserAccess userAccess;
+    private final Collection<? extends GrantedAuthority> authorities;
 
     public UserDetailsimp(UserAccess userAccess, Collection<? extends GrantedAuthority> authorities) {
         this.userAccess = userAccess;

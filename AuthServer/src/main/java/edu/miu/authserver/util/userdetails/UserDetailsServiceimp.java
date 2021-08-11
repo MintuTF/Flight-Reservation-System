@@ -20,7 +20,8 @@ public class UserDetailsServiceimp implements UserDetailsService {
     private UserAccessRepository userAccessRepository;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserAccess user=userAccessRepository.findUserAccessByUsername(username);
+     //   UserAccess user=userAccessRepository.findUserAccessByUsername(username);
+        UserAccess user=userAccessRepository.findUserAccessByEmail(username);
 
 
         if(user==null)
