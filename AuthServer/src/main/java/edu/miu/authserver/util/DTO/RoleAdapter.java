@@ -16,18 +16,18 @@ public class RoleAdapter {
     public static UserRoleRepository roleRepository;
 
     private  static final String ADMIN="ADMIN";
-    private  static final String USER="USER";
-   // private  static final String  PASSANGER="PASSANGER";
+    private  static final String AGENT="AGENT";
+   private  static final String  PASSANGER="PASSANGER";
 
     public static ERole convertEnumTOString(SignupRequest signupRequest) {
         Set<String> strRoles = signupRequest.getRoles();
         if (strRoles.contains( ADMIN)) {
             return ERole.ADMIN;
         }
-        if (strRoles.contains(USER)) {
-            return ERole.USER;
+        if (strRoles.contains(AGENT)) {
+            return ERole.AGENT;
         }
-        return ERole.USER;
+        return ERole.PASSANGER;
 
 
     }
@@ -42,11 +42,18 @@ public class RoleAdapter {
  //           Role adminRole =new Role(ERole.ADMIN);
             roles.add(adminRole);
         }
-        if(strRoles.contains(USER)){
-                        Role userRole = roleRepository.findByName(ERole.USER)
+        if(strRoles.contains(AGENT)){
+                        Role userRole = roleRepository.findByName(ERole.AGENT)
                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
           //  Role userRole =new Role(ERole.USER);
                         roles.add(userRole);
+
+        }
+        if(strRoles.contains(PASSANGER)){
+            Role userRole = roleRepository.findByName(ERole.PASSANGER)
+                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+            //  Role userRole =new Role(ERole.USER);
+            roles.add(userRole);
 
         }
 

@@ -10,6 +10,7 @@ import edu.miu.authserver.util.DTO.UserAccessAdapter;
 import edu.miu.authserver.util.payload.LoginRequest;
 import edu.miu.authserver.util.payload.SignupRequest;
 import edu.miu.authserver.util.payload.response.JwtResponse;
+import edu.miu.authserver.util.payload.response.PersonResponse;
 import edu.miu.authserver.util.payload.response.UserAccessResponse;
 import edu.miu.authserver.util.security.jwt.JwtUtils;
 import edu.miu.authserver.util.userdetails.UserDetailsimp;
@@ -56,9 +57,11 @@ public class UserAccessImp implements UserAccessService {
      //   role.addPerson(userAccess);
 
        // userAccess.addRoles(role);
-      UserAccess saved=   userAccessRepository.save(userAccess);
-        return new UserAccessResponse(saved.getId(),userAccess.getUsername(), userAccess.getName(), userAccess.getPassword(), userAccess.getEmail());
-
+      UserAccess person=   userAccessRepository.save(userAccess);
+      //  return new UserAccessResponse(saved.getId(),userAccess.getUsername(), userAccess.getName(), userAccess.getPassword(), userAccess.getEmail());
+        UserAccessResponse personResponse=new UserAccessResponse(person.getId(), person.getUsername(), person.getName(), person.getPassword(),
+               person.getEmail() );
+        return personResponse;
     }
 
     @Override
@@ -67,7 +70,7 @@ public class UserAccessImp implements UserAccessService {
         System.out.println("user");
 
         Authentication authentication=authenticationManager
-                .authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),loginRequest.getPassword()));
+                .authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getEmail(),loginRequest.getPassword()));
 
         System.out.println(authentication);
         // set to the context

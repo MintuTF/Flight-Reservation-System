@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface UserAccessRepository extends JpaRepository<UserAccess,Long> {
-    public UserAccess findUserAccessByUsername(String name);
-    public UserAccess findUserAccessByPassword(String password);
+     UserAccess findUserAccessByUsername(String name);
+     UserAccess findUserAccessByPassword(String password);
+     UserAccess findUserAccessByEmail(String email);
+
 }
