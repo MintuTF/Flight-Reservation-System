@@ -1,5 +1,6 @@
 package edu.miu.cs.flightreservation.model;
 
+import edu.miu.cs.flightreservation.service.UtilService;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -15,10 +16,9 @@ public class Flight {
     private long id;
     private String number;
     private int capacity;
-    private LocalDate departureTime;
+    private LocalDateTime departureTime;
     private LocalDateTime arrivalTime;
-    @OneToMany
-    @JoinColumn
+    @OneToMany(mappedBy = "flight")
     private List<Ticket> tickets;
     @ManyToOne
     private Airline airLine;
@@ -26,4 +26,8 @@ public class Flight {
     private Airport originAirport;
     @ManyToOne
     private Airport destinationAirport;
+
+    public Flight(){
+        this.number = UtilService.generateAlphanumeric(UtilService.DEFAULT_LENGTH);
+    }
 }

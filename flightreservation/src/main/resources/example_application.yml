@@ -20,7 +20,10 @@ spring:
         dialect: org.hibernate.dialect.MySQL57Dialect
 logging:
   file:
+
     name: /Coding/Logging/${spring.application.name}/log
 springdoc:
   api-docs:
     path: /api-docs
+jwt.secret.key: password
+jwt.expiration.time: 9000000

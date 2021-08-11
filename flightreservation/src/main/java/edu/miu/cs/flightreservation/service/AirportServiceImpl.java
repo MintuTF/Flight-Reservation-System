@@ -42,6 +42,11 @@ public class AirportServiceImpl implements AirportService {
     }
 
     @Override
+    public Airport findByCode(String code) {
+        return airportRepository.findByCode(code).orElse(null);
+    }
+
+    @Override
     public void delete(Airport airport) {
         airportRepository.delete(airport);
     }

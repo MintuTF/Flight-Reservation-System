@@ -12,6 +12,8 @@ import javax.persistence.SecondaryTable;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Data
@@ -22,6 +24,8 @@ public class Airline {
     @GeneratedValue
     private long id;
     private String name;
+    @OneToMany(mappedBy = "airLine")
+    private List<Flight> flights = new ArrayList<Flight>();
 
     @Column(table="airlinehistories")
 
