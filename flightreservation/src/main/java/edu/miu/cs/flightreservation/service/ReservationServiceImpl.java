@@ -83,5 +83,8 @@ public class ReservationServiceImpl implements ReservationService{
         return reservationRepository.findByPassenger(passengerId);
     }
 
-
+    @Override
+    public List<Reservation> findAllByPersonId(Long personId) {
+        return reservationRepository.findAllByPersonId(personId);
+    }
 }

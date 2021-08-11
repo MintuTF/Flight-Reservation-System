@@ -18,4 +18,10 @@ public interface ReservationRepository extends JpaRepository<Reservation,Long> {
 
     @Query("FROM Reservation reservation WHERE reservation.id=:createdById")
     List<Reservation> findByCreatedBy(@Param("createdById") String createdById);
+
+    @Query("FROM Reservation reservation WHERE " +
+            "reservation.passenger.id=:personId " +
+            "OR reservation.createdBy.id=:personId")
+    List<Reservation> findAllByPersonId(@Param("personId") Long personId);
+
 }
