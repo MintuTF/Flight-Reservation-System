@@ -14,4 +14,4 @@ logging:
         discovery: OFF
 spring:
   application:
-    name: flight-registry-server-registry
+    name: spring-boot-20-registry

@@ -1,10 +1,10 @@
-package edu.miu.registryserver;
+package com.compro.cs.microservice_registry;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class RegistryServerApplicationTests {
+class MicroserviceRegistryApplicationTests {
 
     @Test
     void contextLoads() {

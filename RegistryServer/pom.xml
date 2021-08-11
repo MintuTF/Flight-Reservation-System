@@ -8,18 +8,10 @@
         <version>2.5.3</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>edu.miu</groupId>
-    <artifactId>RegistryServer</artifactId>
+    <groupId>com.compro.cs</groupId>
+    <artifactId>Microservice_Registry</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>RegistryServer</name>
-<!--    <modules>-->
-<!--        <module>AuthServer-->
-<!--        </module>-->
-<!--        <module>flightreservation-->
-<!--        </module>-->
-<!--        <module>RegistryServer-->
-<!--        </module>-->
-<!--    </modules>-->
+    <name>Microservice_Registry</name>
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>11</java.version>
