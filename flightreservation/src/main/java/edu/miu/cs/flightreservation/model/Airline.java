@@ -12,6 +12,7 @@ import javax.persistence.SecondaryTable;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,7 @@ import java.util.List;
 @Data
 @Entity
 @SecondaryTable(name = "airlinehistories")
-public class Airline {
+public class Airline implements Serializable {
     @Id
     @GeneratedValue
     private long id;

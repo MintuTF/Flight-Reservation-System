@@ -53,24 +53,24 @@ public class FlightController {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping()
-    public ResponseEntity<Flight> createFlight(@RequestBody FlightRequest flight){
-        try{
-            Flight _flight = new Flight();
-            Airport originAirport = airportService.findById(flight.getOriginAirport());
-            Airport destinationAirport = airportService.findById(flight.getDestinationAirport());
-            Airline airline = airlineService.findById(flight.getAirlineId());
-
-            if(originAirport == null || destinationAirport == null || airline == null)
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            _flight.setOriginAirport(originAirport);
-            _flight.setDestinationAirport(destinationAirport);
-            _flight.setAirLine(airline);
-            return new ResponseEntity(flightService.create(_flight), HttpStatus.CREATED);
-        }catch (Exception e){
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+//    @PostMapping()
+//    public ResponseEntity<Flight> createFlight(@RequestBody FlightRequest flight){
+//        try{
+//            Flight _flight = new Flight();
+//            Airport originAirport = airportService.findById(flight.getOriginAirport());
+//            Airport destinationAirport = airportService.findById(flight.getDestinationAirport());
+//            Airline airline = airlineService.findById(flight.getAirlineId());
+//
+//            if(originAirport == null || destinationAirport == null || airline == null)
+//                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//            _flight.setOriginAirport(originAirport);
+//            _flight.setDestinationAirport(destinationAirport);
+//            _flight.setAirLine(airline);
+//            return new ResponseEntity(flightService.create(_flight), HttpStatus.CREATED);
+//        }catch (Exception e){
+//            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
 
     @PutMapping("/{id}")
     public ResponseEntity<Flight> updateFlight(@PathVariable("id") Long id, @RequestBody @Valid FlightRequest flight){

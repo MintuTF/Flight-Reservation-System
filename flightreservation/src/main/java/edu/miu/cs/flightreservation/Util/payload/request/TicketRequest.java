@@ -1,9 +1,5 @@
 package edu.miu.cs.flightreservation.Util.payload.request;
 
-
-import edu.miu.cs.flightreservation.model.Flight;
-import edu.miu.cs.flightreservation.model.Reservation;
-import edu.miu.cs.flightreservation.service.UtilService;
 import lombok.Data;
 
 import javax.persistence.*;

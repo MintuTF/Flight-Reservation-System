@@ -34,7 +34,6 @@ public class FlightServiceImpl implements FlightService{
     }
 
     @Override
-
     public Page<Flight> findAll(Pageable pageable) {
         return repository.findAll(pageable);
     }
@@ -50,19 +49,19 @@ public class FlightServiceImpl implements FlightService{
         return repository.save(flight);
     }
 
-    @Override
-    public Flight update(long id) {
-        Boolean exist = repository.existsById(id);
-        if (exist) {
-            return repository.save(repository.getById(id));
-        }
-        return null;
-    }
+//    @Override
+//    public Flight update(long id) {
+//        Boolean exist = repository.existsById(id);
+//        if (exist) {
+//            return repository.save(repository.getById(id));
+//        }
+//        return null;
+//    }
 
-    @Override
-    public Flight create(Flight flight) {
-        return repository.save(flight);
-    }
+//    @Override
+//    public Flight create(Flight flight) {
+//        return repository.save(flight);
+//    }
 
     @Override
     public boolean exists(long[] flights) {

@@ -4,13 +4,14 @@ import edu.miu.cs.flightreservation.service.UtilService;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
 @Entity
-public class Flight {
+public class Flight implements Serializable {
     @Id
     @GeneratedValue
     private long id;
@@ -18,13 +19,13 @@ public class Flight {
     private int capacity;
     private LocalDateTime departureTime;
     private LocalDateTime arrivalTime;
-    @OneToMany(mappedBy = "flight")
+    @OneToMany(mappedBy = "flight", cascade = CascadeType.ALL)
     private List<Ticket> tickets;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Airline airLine;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Airport originAirport;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Airport destinationAirport;
 
     public Flight(){
